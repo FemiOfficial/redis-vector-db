@@ -15,12 +15,12 @@ export const responsesIndex = {
     type: SCHEMA_FIELD_TYPE.TAG,
     AS: "policy_tag",
   },
-  "$.embedding": {
+  "$.response_embedding": {
     type: SCHEMA_FIELD_TYPE.VECTOR,
     TYPE: "FLOAT32",
     ALGORITHM: SCHEMA_VECTOR_FIELD_ALGORITHM.HNSW,
     DISTANCE_METRIC: "L2",
     DIM: 768,
-    AS: "embedding",
+    AS: "response_embedding",
   },
 };
