@@ -42,7 +42,7 @@ src/
 1. **Clone and install dependencies:**
 
    ```bash
-   cd blog-ts
+   cd {{lfolder where repo is cloned}}
    npm install
    ```
 
