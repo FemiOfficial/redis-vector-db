@@ -1,4 +1,4 @@
-import { redisClient } from "redis/connect";
+import { redisClient } from "../redis/connect";
 import {
   getTransformerPipeline,
   embeddingPipelingOptions,
@@ -9,14 +9,14 @@ const __RESPONSES_INDEX__ = "responses_idx";
 export const vectorSearch = async (query: string): Promise<any> => {
   const pipe = await getTransformerPipeline();
 
-  const queryEmbedding = (await pipe(query, embeddingPipelingOptions)).data;
+  const queryEmbedding: any = (await pipe(query, embeddingPipelingOptions)).data;
 
   const searchResults = await redisClient.ft.search(
     __RESPONSES_INDEX__,
     "*=>[KNN 3 @response_embedding $QUERY_EMBEDDING AS score]",
     {
       PARAMS: {
-        QUERY_EMBEDDING: Buffer.from(Array.from(queryEmbedding)),
+        QUERY_EMBEDDING: Buffer.from(queryEmbedding.buffer),
       },
       RETURN: [
         "score",

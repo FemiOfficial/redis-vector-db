@@ -1,8 +1,12 @@
-import { SCHEMA_FIELD_TYPE, SCHEMA_VECTOR_FIELD_ALGORITHM } from "redis";
+import {
+  RediSearchSchema,
+  SCHEMA_FIELD_TYPE,
+  SCHEMA_VECTOR_FIELD_ALGORITHM,
+} from "redis";
 
 export const __RESPONSES_INDEX__ = "responses_idx";
 
-export const responsesIndex = {
+export const responsesIndex: RediSearchSchema = {
   "$.question": {
     type: SCHEMA_FIELD_TYPE.TEXT,
     AS: "question",

@@ -4,7 +4,6 @@ import {
   getTransformerPipeline,
   embeddingPipelingOptions,
 } from "../transformer/pipeline";
-import { FeatureExtractionPipelineOptions } from "@xenova/transformers";
 
 export const seed = async () => {
   const pipeLine = await getTransformerPipeline();
@@ -17,7 +16,7 @@ export const seed = async () => {
         ...(
           await pipeLine(
             responseObject.response,
-            embeddingPipelingOptions as FeatureExtractionPipelineOptions
+            embeddingPipelingOptions
           )
         ).data,
       ],
