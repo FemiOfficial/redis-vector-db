@@ -2,20 +2,7 @@ import { vectorSearch } from "./handlers/vector-search";
 import { seed } from "./seed";
 import { createVectorIndex } from "./redis/create-index";
 import { redisClient } from "./redis/connect";
-import * as readline from "readline";
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const askQuestion = (question: string): Promise<string> => {
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
-};
+import { askQuestion, rl } from "./handlers/ask-question";
 
 (async () => {
   // Clear all existing data first
@@ -45,7 +32,7 @@ const askQuestion = (question: string): Promise<string> => {
     const resultValue = result.value;
 
     console.log(
-      `${resultValue["$.response"]}\n - ${resultValue["$.policy_tag"]} - ${resultValue["score"]}`
+      `${resultValue["$.response"]}\n\nPolicy Tag: ${resultValue["$.policy_tag"]} \n\nSimilarity Distance: ${resultValue["score"]}\n\nManagers: ${resultValue["$.responsible_individuals"]}\n\nRelevant Documents: ${resultValue["$.relevant_document_names"]}`
     );
     console.log("--------------------------------\n\n");
   }
