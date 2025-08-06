@@ -3,8 +3,7 @@ import {
   getTransformerPipeline,
   embeddingPipelingOptions,
 } from "../transformer/pipeline";
-
-const __RESPONSES_INDEX__ = "responses_idx";
+import { __RESPONSES_INDEX__ } from "../redis/search-schema";
 
 export const vectorSearch = async (query: string): Promise<any> => {
   const pipe = await getTransformerPipeline();
